@@ -154,9 +154,10 @@ const
   cpu_type = 0;
   apic_type = 2;
   MAX_CPU = 8;  // Number of max CPU support
-  ALLOC_MEMORY_START = $800000; // Address Start of Alloc Memory
-  KERNEL_IMAGE_START = $400000;
-  PAGE_SIZE = 2*1024*1024; // 2 MB per Page
+  MEGABYTES = 1024 * 1024;
+  ALLOC_MEMORY_START = 64 * MEGABYTES; // Address Start of Alloc Memory
+  KERNEL_IMAGE_START = 4 * MEGABYTES;
+  PAGE_SIZE = 2 * MEGABYTES; // 2 MB per Page
   HasCacheHandler: Boolean = True;
   HasException: Boolean = True;
   HasFloatingPointUnit : Boolean = True;
