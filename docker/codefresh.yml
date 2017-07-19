@@ -1,0 +1,16 @@
+version: '1.0'
+steps:
+  Building_x64:
+    title: Building x64 Docker Image
+    type: build
+    image_name: markfirmware/lazarus
+    dockerfile: docker/lazarus-x64.dockerfile
+# Building_armv7hf:
+#   title: Building armv7hf Docker Image
+  Pushing_x64:
+    title: Pushing x64 to Docker Registry
+    type: push
+    candidate: '${{Building_x64}}'
+    tag: '${{CF_BRANCH}}-x64-${{CF_BUILD_TIMESTAMP}}'
+# Pushing_armv7hf:
+#   title: Pushing armv7hf to Docker Registry
