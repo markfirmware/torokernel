@@ -4,7 +4,7 @@ steps:
     title: Building x64 Docker Image
     type: build
     image_name: markfirmware/lazarus
-    dockerfile: docker/lazarus-x64.dockerfile
+    dockerfile: markfirmware/docker/lazarus-x64.dockerfile
 # Building_armv7hf:
 #   title: Building armv7hf Docker Image
   Pushing_x64:
