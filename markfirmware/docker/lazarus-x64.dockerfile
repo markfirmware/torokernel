@@ -22,17 +22,14 @@ RUN DEB=fpc-src_3.0.2-170225_amd64.deb && \
     wget -q -O $DEB \
     'https://downloads.sourceforge.net/project/lazarus/Lazarus%20Linux%20amd64%20DEB/Lazarus%201.6.4/lazarus-project_1.6.4-0_amd64.deb?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Flazarus%2Ffiles%2FLazarus%2520Linux%2520amd64%2520DEB%2FLazarus%25201.6.4%2F&ts=1500439026&use_mirror=newcontinuum' && \
     dpkg -i $DEB && \
-    rm $DEB
+    rm $DEB && \
+\
+    fpc -i
+
+WORKDIR /workdir
 
 
-
-
-
-
-#    fpc -i
-#
 #RUN apt-get update && apt-get install -y binutils gcc git && \
-#WORKDIR /root/ultibo/core/fpc/source
 #
 #ENV PATH=/root/ultibo/core/fpc/bin:$PATH
 #
@@ -42,5 +39,3 @@ RUN DEB=fpc-src_3.0.2-170225_amd64.deb && \
 #WORKDIR /test
 #COPY docker/test-with-examples.sh .
 #RUN ./test-with-examples.sh
-#
-#WORKDIR /workdir
