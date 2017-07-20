@@ -1,4 +1,5 @@
 #!/bin/bash
+# trigger circleci
 
 function docker-bash {
     if [ "$(which $1)" != "" ]
