@@ -15,9 +15,9 @@ function docker-bash {
 function callfpc {
     header callfpc $*
     local PROJECT=markfirmware
-    local FPC="fpc -l- -v0ewn -B -Fu../rtl -Fu../rtl/drivers $*"
+    local FPC="fpc -l- -v0ewn -B -Furtl -Furtl/drivers $*"
     log $FPC
-    (docker-bash "cd $PROJECT; $FPC") |& tee -a $LOG
+    docker-bash $FPC |& tee -a $LOG
 }
 
 function log {
@@ -50,7 +50,7 @@ log
 
 for f in rtl/*.pas rtl/drivers/*.pas
 do
-    callfpc -TWin64 ../$f
+    callfpc -TWin64 $f
 done
 
 #callfpc build.pas
