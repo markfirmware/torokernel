@@ -30,7 +30,7 @@ LOG=artifacts/build.log
 mkdir artifacts
 log $(date)
 log
-cat linux-testqemushm.sh > $LOG
+cat linux-testqemushm.sh >> $LOG
 log
 
 callfpc build.pas
