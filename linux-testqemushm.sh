@@ -26,8 +26,7 @@ function log {
 
 function header {
     log
-    log ----------------------------------------------------------
-    log ---- $*
+    log ---------------------------------------------------------- $*
 }
 
 SCRIPT=linux-testqemushm.sh
@@ -40,7 +39,7 @@ log
 
 for f in rtl/*
 do
-    callfpc -TWin64 ../rtl/$f
+    callfpc -TWin64 ../$f
 done
 
 #callfpc build.pas
