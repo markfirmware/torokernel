@@ -1,6 +1,10 @@
 #!/bin/bash
 
 function docker-bash {
+    eval $*
+}
+
+function xdocker-bash {
     if [ "$(which $1)" != "" ]
     then
         eval $*
