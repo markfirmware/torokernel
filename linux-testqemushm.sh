@@ -26,12 +26,17 @@ function log {
     echo $* > $LOG
 }
 
+set -x
+
 LOG=artifacts/build.log
 mkdir artifacts
 log $(date)
 log
 cat linux-testqemushm.sh > $LOG
 log
+
+pwd
+ls-ltR
 
 #callfpc build.pas
 #callfpc -TWin64 toroqemushm.pas
