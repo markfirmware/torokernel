@@ -2,7 +2,7 @@
 
 function callfpc {
     header callfpc $*
-    local FPC="fpc -l- -v0ewn -B -Fu../rtl -Fu../rtl/drivers $*"
+    local FPC="fpc -l- -v0ewn -B -Furtl -Furtl/drivers $*"
     log $FPC
     eval $FPC |& tee -a $LOG
 }
@@ -36,13 +36,11 @@ header script: $SCRIPT
 cat $SCRIPT >> $LOG
 log
 
-cd rtl
-for f in *.pas drivers/*.pas
+for f in rtl/*.pas rtl/drivers/*.pas
 do
-    callfpc -TWin64 ../$f
+    callfpc -TWin64 $f
 done
 
-#cd markfirmware
 #callfpc build.pas
 #callfpc -TWin64 toroqemushm.pas
 
