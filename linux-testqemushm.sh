@@ -1,5 +1,4 @@
 #!/bin/bash
-# trigger circleci
 
 function docker-bash {
     if [ "$(which $1)" != "" ]
@@ -20,6 +19,7 @@ function fpc {
 }
 
 mkdir artifacts
+touch artifacts/build.log
 fpc build.pas
 fpc -TWin64 toroqemushm.pas
 
