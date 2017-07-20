@@ -1,0 +1,16 @@
+version: 2
+executorType: docker
+containerInfo:
+  - image: markfirmware/lazarus:markfirmware-x64-1500447372285
+stages:
+  build:
+    workDir: ~/ToroKernel
+    steps:
+      - type: checkout
+      - name: Build and test
+        type: shell
+        command: ./linux-testqemushm.sh
+      - name: Save artifacts
+        type: artifacts-store
+        path: artifacts
+        destination: toroqemushm
