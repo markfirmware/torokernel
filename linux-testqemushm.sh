@@ -26,10 +26,19 @@ function log {
 
 function header {
     log
-    log -------------------------------------------------------------------
-    log ---------------- $*
-    log -------------------------------------------------------------------
+    log $LONGDASHES
+    log $SHORTDASHES $*
+    log $LONGDASHES
 }
+
+LONGDASHES=-
+LONGDASHES="$LONGDASHES$LONGDASHES"
+LONGDASHES="$LONGDASHES$LONGDASHES"
+LONGDASHES="$LONGDASHES$LONGDASHES"
+LONGDASHES="$LONGDASHES$LONGDASHES"
+SHORTDASHES=$LONGDASHES
+LONGDASHES="$LONGDASHES$LONGDASHES"
+LONGDASHES="$LONGDASHES$LONGDASHES"
 
 SCRIPT=linux-testqemushm.sh
 LOG=artifacts/build.log
