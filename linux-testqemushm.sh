@@ -16,7 +16,7 @@ function xdocker-bash {
     fi
 }
 
-function fpc {
+function callfpc {
     local PROJECT=markfirmware
     local FPC="fpc -l- -B -Fu../rtl -Fu../rtl/drivers $*"
     (docker-bash "ls -lt; cd $PROJECT; $FPC") | tee build.log
@@ -31,7 +31,7 @@ touch artifacts/build.log
 ls -lt artifacts
 echo
 
-fpc build.pas
+callfpc build.pas
 
 echo
 ls -ltR
