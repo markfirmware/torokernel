@@ -18,11 +18,13 @@ function fpc {
     docker-bash "cd $PROJECT; $FPC" | tee -a artifacts/build.log
 }
 
+mkdir artifacts
+touch artifacts/build.log
+
 pwd
 ls -lt
+ls -lt artifacts
 
-#mkdir artifacts
-#touch artifacts/build.log
 #fpc build.pas
 #fpc -TWin64 toroqemushm.pas
 
