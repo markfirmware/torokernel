@@ -13,8 +13,7 @@ function docker-bash {
 }
 
 function callfpc {
-    log
-    log ---- callfpc $*
+    header callfpc $*
     local PROJECT=markfirmware
     local FPC="fpc -l- -v0ewn -B -Fu../rtl -Fu../rtl/drivers $*"
     log $FPC
@@ -25,16 +24,26 @@ function log {
     echo $* >> $LOG
 }
 
+function header {
+    log
+    log ----------------------------------------------------------
+    log ---- $*
+}
+
 SCRIPT=linux-testqemushm.sh
 LOG=artifacts/build.log
 mkdir artifacts
 log $(date)
-log
-log ---- script: $SCRIPT
+header script: $SCRIPT
 cat $SCRIPT >> $LOG
 log
 
-callfpc build.pas
-callfpc -TWin64 toroqemushm.pas
+for f in rtl/*
+do
+    callfpc -TWin64 $f
+done
+
+#callfpc build.pas
+#callfpc -TWin64 toroqemushm.pas
 
 #/c/Program\ Files/qemu/qemu-system-x86_64 -m 512M -smp 2 -drive format=raw,file=toroqemushm.img
