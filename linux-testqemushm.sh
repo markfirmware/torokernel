@@ -19,14 +19,18 @@ function xdocker-bash {
 function callfpc {
     local PROJECT=markfirmware
     local FPC="fpc -l- -B -Fu../rtl -Fu../rtl/drivers $*"
-    (docker-bash "ls -lt; cd $PROJECT; $FPC") | tee -a build.log
+    (docker-bash "cd $PROJECT; $FPC") | tee -a artifacts/build.log
 }
 
 cat linux-testqemushm.sh
 echo
 
 mkdir artifacts
+date > artifacts/build.log
+echo
 callfpc build.pas
 #callfpc -TWin64 toroqemushm.pas
+echo
+cat artifacts/build.log
 
 #/c/Program\ Files/qemu/qemu-system-x86_64 -m 512M -smp 2 -drive format=raw,file=toroqemushm.img
