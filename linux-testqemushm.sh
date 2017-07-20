@@ -18,9 +18,12 @@ function fpc {
     docker-bash "cd $PROJECT; $FPC" | tee -a artifacts/build.log
 }
 
-mkdir artifacts
-touch artifacts/build.log
-fpc build.pas
-fpc -TWin64 toroqemushm.pas
+pwd
+ls -lt
+
+#mkdir artifacts
+#touch artifacts/build.log
+#fpc build.pas
+#fpc -TWin64 toroqemushm.pas
 
 #/c/Program\ Files/qemu/qemu-system-x86_64 -m 512M -smp 2 -drive format=raw,file=toroqemushm.img
