@@ -26,7 +26,9 @@ function log {
 
 function header {
     log
-    log ---------------------------------------------------------- $*
+    log -------------------------------------------------------------------
+    log ---------------- $*
+    log -------------------------------------------------------------------
 }
 
 SCRIPT=linux-testqemushm.sh
@@ -37,7 +39,7 @@ header script: $SCRIPT
 cat $SCRIPT >> $LOG
 log
 
-for f in rtl/*
+for f in rtl/*.pas rtl/drivers/*.pas
 do
     callfpc -TWin64 ../$f
 done
