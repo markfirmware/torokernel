@@ -35,8 +35,8 @@ log
 cat linux-testqemushm.sh > $LOG
 log
 
-pwd
-ls-ltR
+log $(pwd)
+log $(ls -ltR)
 
 #callfpc build.pas
 #callfpc -TWin64 toroqemushm.pas
