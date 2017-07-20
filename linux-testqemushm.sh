@@ -40,7 +40,7 @@ log
 
 for f in rtl/*
 do
-    callfpc -TWin64 $f
+    callfpc -TWin64 ../rtl/$f
 done
 
 #callfpc build.pas
