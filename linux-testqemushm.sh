@@ -27,16 +27,16 @@ SHORTDASHES=$LONGDASHES
 LONGDASHES="$LONGDASHES$LONGDASHES"
 LONGDASHES="$LONGDASHES$LONGDASHES"
 
-cd rtl
 
 SCRIPT=linux-testqemushm.sh
-LOG=build.log
+LOG=artifacts/build.log
 mkdir artifacts
 log $(date)
 header script: $SCRIPT
 cat $SCRIPT >> $LOG
 log
 
+cd rtl
 for f in *.pas drivers/*.pas
 do
     callfpc -TWin64 ../$f
