@@ -15,7 +15,7 @@ function docker-bash {
 function fpc {
     local PROJECT=markfirmware
     local FPC="fpc -l- -B -Fu../rtl -Fu../rtl/drivers $*"
-    (docker-bash "cd $PROJECT; $FPC") | tee artifacts/build.log
+    (docker-bash "cd $PROJECT; $FPC") | tee build.log
 }
 
 mkdir artifacts
