@@ -7,9 +7,8 @@ stages:
     workDir: ~/ToroKernel
     steps:
       - type: checkout
-      - name: Build and test
-        type: shell
-        command: cd markfirmware && ./linux-testelf.sh
+      - run: cd markfirmware
+      - run: ./linux-testelf.sh
       - name: Save artifacts
         type: artifacts-store
         path: artifacts
