@@ -4,7 +4,7 @@ program ToroQemuShm;
  {$mode delphi}
 {$ENDIF}
 
-{$IMAGEBASE 4194304}
+//{$IMAGEBASE 4194304}
 
 // Configuring the RUN for Lazarus
 {$IFDEF WIN64}
