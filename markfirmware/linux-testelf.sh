@@ -3,6 +3,7 @@
 function torodocker {
     if [ "$CIRCLECI" == "true" ]
     then
+        log $*
         eval $* |& tee -a $LOG
     else
         local DOCKER_IMAGE=markfirmware/torodocker:torodocker-1500629424965
