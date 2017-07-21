@@ -3,8 +3,8 @@ steps:
   Building:
     title: Building
     type: build
-    image_name: markfirmware/torokernel-bash
-    dockerfile: markfirmware/docker/torokernel-bash.dockerfile
+    image_name: markfirmware/torodocker
+    dockerfile: markfirmware/docker/torodocker.dockerfile
   Pushing:
     title: Pushing
     type: push
