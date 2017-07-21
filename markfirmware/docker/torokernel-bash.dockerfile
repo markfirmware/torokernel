@@ -1,8 +1,8 @@
-FROM debian
+FROM debian:jessie
 
 WORKDIR /workdir
 
-RUN apt-get update && apt-get install -y wget
+RUN apt-get update && apt-get install -y binutils wget
 
 RUN DEB=fpc_3.0.2-170225_amd64.deb && \
     wget -q -O $DEB \
