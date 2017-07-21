@@ -6,10 +6,10 @@ stages:
   build:
     workDir: ~/ToroKernel
     steps:
-      - type: checkout
+      - checkout
       - run: cd markfirmware
+      - run: pwd
       - run: ./linux-testelf.sh
-      - name: Save artifacts
-        type: artifacts-store
-        path: artifacts
-        destination: testelf
+      - store_artifacts:
+          path: artifacts
+          destination: testelf
