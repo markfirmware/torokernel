@@ -10,7 +10,7 @@ RUN DEB=fpc_3.0.2-170225_amd64.deb && \
 
 COPY markfirmware/docker/fpctest.pas .
 RUN fpc -i && \
-    fpc fpctest.pas
+    fpc fpctest.lpr
 
 RUN apt-get update && apt-get install -y libgtk2.0-dev
 

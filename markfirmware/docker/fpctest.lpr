@@ -1,4 +1,4 @@
-program ToroQemuShm;
+program fpctest;
 
 var
   I:Integer;
