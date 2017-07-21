@@ -24,6 +24,11 @@ function header {
     log $LONGDASHES
 }
 
+function showfile {
+    header $1
+    cat $1 >> $LOG
+}
+
 SHORTDASHES=----------------
 LONGDASHES="$SHORTDASHES$SHORTDASHES"
 LONGDASHES="$LONGDASHES$LONGDASHES"
@@ -32,6 +37,9 @@ LOG=build.log
 rm -f $LOG
 
 log $(date)
+
+showfile testelf.pas
+showfile head64.s
 
 header building testelf.pas
 torodocker "nasm -o head64.o -f elf64 head64.s"
