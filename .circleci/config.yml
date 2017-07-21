@@ -7,9 +7,7 @@ stages:
     workDir: ~/ToroKernel
     steps:
       - checkout
-      - run: cd markfirmware
-      - run: pwd
-      - run: ./linux-testelf.sh
+      - run: cd markfirmware && pwd && ls && ./linux-testelf.sh
       - store_artifacts:
           path: artifacts
           destination: testelf
