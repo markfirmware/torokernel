@@ -9,7 +9,9 @@ stages:
       - type: checkout
       - name: Build and test
         type: shell
-        command: cd markfirmware; ./linux-testelf.sh
+        command:
+          - cd markfirmware
+          - ./linux-testelf.sh
       - name: Save artifacts
         type: artifacts-store
         path: artifacts
