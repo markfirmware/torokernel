@@ -28,6 +28,9 @@ RUN DEB=fpc-src_3.0.2-170225_amd64.deb && \
 
 WORKDIR /workdir
 
+COPY markfirmware/docker/fpctest.pas .
+
+RUN  fpc fpctest.pas
 
 #RUN apt-get update && apt-get install -y binutils gcc git && \
 #
