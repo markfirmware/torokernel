@@ -1,5 +1,4 @@
 program ToroQemuShm;
-{$mode delphi}
 
 var
   I:Integer;
