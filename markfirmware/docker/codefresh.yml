@@ -1,16 +1,12 @@
 version: '1.0'
 steps:
-  Building_x64:
-    title: Building x64 Docker Image
+  Building:
+    title: Building
     type: build
-    image_name: markfirmware/lazarus
-    dockerfile: markfirmware/docker/lazarus-x64.dockerfile
-# Building_armv7hf:
-#   title: Building armv7hf Docker Image
-  Pushing_x64:
-    title: Pushing x64 to Docker Registry
+    image_name: markfirmware/torokernel-bash
+    dockerfile: markfirmware/docker/torokernel-bash.dockerfile
+  Pushing:
+    title: Pushing
     type: push
-    candidate: '${{Building_x64}}'
-    tag: '${{CF_BRANCH}}-x64-${{CF_BUILD_TIMESTAMP}}'
-# Pushing_armv7hf:
-#   title: Pushing armv7hf to Docker Registry
+    candidate: '${{Building}}'
+    tag: '${{CF_BRANCH}}-${{CF_BUILD_TIMESTAMP}}'
