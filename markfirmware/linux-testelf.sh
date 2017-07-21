@@ -35,7 +35,7 @@ log $(date)
 
 header building testelf.pas
 torodocker "nasm -o head64.o -f elf64 head64.s"
-torodocker "fpc -B -s testelf.pas && cp -a link-with-multiboot.res link.res && ./ppas.sh"
+torodocker "fpc -B -s testelf.pas && sed -i '/prt0/ i head64.o' link.res && ./ppas.sh"
 
 header running qemu
 torodocker qemu-system-x86_64 -kernel testelf
