@@ -48,6 +48,7 @@ torodocker "fpc -B -s testelfprogram.pas && sed -i '/prt0/ i head64.o' link.res 
 cp -a testelfprogram artifacts
 
 header running qemu
+log the following command is not run during the cloud build:
 log torodocker qemu-system-x86_64 -kernel testelfprogram -display none -s
 
 echo
