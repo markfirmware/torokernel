@@ -49,7 +49,7 @@ cp -a testelfprogram artifacts
 
 header running qemu
 log the following command is not run during the cloud build:
-log torodocker qemu-system-x86_64 -kernel testelfprogram -display none -s
+log torodocker qemu-system-x86_64 -kernel testelfprogram -display none -monitor stdio
 
 echo
 echo see $LOG

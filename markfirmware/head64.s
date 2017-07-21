@@ -40,7 +40,7 @@ dd MULTIBOOT_HEADER_HEADER
 dd MULTIBOOT_HEADER_LOAD
 dd 0
 dd 0
-dd PASCALMAIN
+dd _inicio
 
 ;tamaño del la pila
 KERNEL_STACKSIZE		equ	0x4000
