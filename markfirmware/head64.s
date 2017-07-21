@@ -20,8 +20,9 @@ BITS 64
     ;
     
     MULTIBOOT_HEADER_MAGIC		equ	0x1BADB002     
-    MULTIBOOT_HEADER_FLAGS		equ	MULTIBOOT_MODULE_ALIGN | MULTIBOOT_MEMORY_MAP
+    MULTIBOOT_HEADER_FLAGS		equ	MULTIBOOT_MODULE_ALIGN | MULTIBOOT_MEMORY_MAP | MULTIBOOT_ADDRESS_FIELDS
     MULTIBOOT_HEADER_CHECKSUM	equ	-(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS)
+    MULTIBOOT_HEADER_LOAD		equ	0x400000     
 
  
 
@@ -31,20 +32,26 @@ SECTION .text
 ; Multiboot header
 ;
 align 4
+MULTIBOOT_HEADER_HEADER:
 dd MULTIBOOT_HEADER_MAGIC
 dd MULTIBOOT_HEADER_FLAGS
 dd MULTIBOOT_HEADER_CHECKSUM
+dd MULTIBOOT_HEADER_HEADER
+dd MULTIBOOT_HEADER_LOAD
+dd 0
+dd 0
+dd PASCALMAIN
 
 ;tamaño del la pila
 KERNEL_STACKSIZE		equ	0x4000
 
    _inicio: 
 
-    mov esp , KERNEL_STACK+KERNEL_STACKSIZE
-    mov ebp , KERNEL_STACK+KERNEL_STACKSIZE
+    mov rsp , KERNEL_STACK+KERNEL_STACKSIZE
+    mov rbp , KERNEL_STACK+KERNEL_STACKSIZE
 
-;   push eax
-;   push ebx 
+    push rax
+    push rbx 
 ;   call MULTIBOOT_INIT 
 
     jmp PASCALMAIN
@@ -52,8 +59,8 @@ KERNEL_STACKSIZE		equ	0x4000
 
      GLOBAL FARJUMP
 FARJUMP:
-;   push   ebp
-    mov    ebp, esp
+    push   rbp
+    mov    rbp, rsp
     mov    ax , word [ebp + 8]
     mov    word [ebp - 2], ax
     mov    eax, dword [ebp + 12]

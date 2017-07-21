@@ -2,9 +2,9 @@ program TestElfProgram;
 {$mode delphi}
 
 var
-  I:Integer;
+  Counter:Integer absolute $400154;
 begin
-  I:=0;
+  Counter:=0;
   while True do
-    Inc(I);
+    Inc(Counter);
 end.
