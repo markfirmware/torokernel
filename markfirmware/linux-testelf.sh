@@ -33,20 +33,22 @@ SHORTDASHES=----------------
 LONGDASHES="$SHORTDASHES$SHORTDASHES"
 LONGDASHES="$LONGDASHES$LONGDASHES"
 
-LOG=build.log
+LOG=artifacts/build.log
+mkdir -p artifacts
 rm -f $LOG
 
 log $(date)
 
-showfile testelf.pas
+showfile testelfprogram.pas
 showfile head64.s
 
-header building testelf.pas
+header building testelfprogram.pas
 torodocker "nasm -o head64.o -f elf64 head64.s"
-torodocker "fpc -B -s testelf.pas && sed -i '/prt0/ i head64.o' link.res && ./ppas.sh"
+torodocker "fpc -B -s testelfprogram.pas && sed -i '/prt0/ i head64.o' link.res && ./ppas.sh"
+cp -a testelfprogram artifacts
 
 header running qemu
-torodocker qemu-system-x86_64 -kernel testelf
+torodocker qemu-system-x86_64 -kernel testelfprogram
 
 echo
 echo see $LOG

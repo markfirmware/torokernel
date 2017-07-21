@@ -1,4 +1,4 @@
-program ToroQemuShm;
+program TestElfProgram;
 {$mode delphi}
 
 var
