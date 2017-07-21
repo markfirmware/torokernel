@@ -9,5 +9,6 @@ stages:
       - checkout
       - run: cd markfirmware && ./linux-testelf.sh
       - store_artifacts:
-          path: markfirmware/artifacts
-          destination: testelf
+          path: markfirmware/build.log
+      - store_artifacts:
+          path: markfirmware/testelf
