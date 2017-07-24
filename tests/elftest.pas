@@ -1,7 +1,7 @@
 program ElfTest;
 
-//uses
-//System in '..\rtl\system.pas';
+uses
+  System in '..\rtl\system.pas';
 
 var
   Counter;
