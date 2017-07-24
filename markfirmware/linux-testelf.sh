@@ -6,7 +6,7 @@ function torodocker {
         log $*
         eval $* |& tee -a $LOG
     else
-        local DOCKER_IMAGE=markfirmware/torodocker:torodocker-1500861724056
+        local DOCKER_IMAGE=markfirmware/torodocker:torodocker-1500862438806
         local COMMAND="docker run --rm -i -v $(pwd):/workdir -p 1234:1234 --entrypoint /bin/bash $DOCKER_IMAGE -c \"$*\""
         log $COMMAND
         eval $COMMAND |& sed '/^$/d' |& sed '/did you forget -T/d' |& tee -a $LOG
