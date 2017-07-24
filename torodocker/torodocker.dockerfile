@@ -15,5 +15,5 @@ RUN wget -q -O fpc.deb 'http://downloads.sourceforge.net/project/lazarus/Lazarus
     rm fpc.deb && \
     fpc -i
 
-COPY markfirmware/docker/fpctest.pas .
+COPY torodocker/fpctest.pas .
 RUN  fpc fpctest.pas
