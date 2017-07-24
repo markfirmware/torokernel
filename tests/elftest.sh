@@ -43,7 +43,7 @@ showfile elftest.pas
 
 header build elftest.pas
 pushd ..
-torodocker "fpc -l- -g -B -s -Fu./rtl -Fu./rtl/drivers tests/elftest.pas"
+torodocker "fpc -B -Fu./rtl -Fu./rtl/drivers tests/elftest.pas"
 popd
 
 echo
