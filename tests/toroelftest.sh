@@ -69,7 +69,7 @@ coproc torodocker \
 torodocker gdb -q << __EOF__ \
     |& egrep -iv '^$|will be killed|not from terminal'
 target remote localhost:1234
-symbol-file toroelftest
+symbol-file tests/toroelftest
 b 7
 define cycle
   c
