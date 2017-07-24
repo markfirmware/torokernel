@@ -1,10 +1,7 @@
 program ToroElfTest;
 
-uses
-  System in '..\rtl\system.pas';
-
 var
-  Counter;
+  Counter:LongWord;
 begin
   while True do
     Inc(Counter);

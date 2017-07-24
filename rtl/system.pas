@@ -1066,6 +1066,7 @@ type
 
 
 { Required to solve overloading problem with call from assembler (PFV) }
+function fpc_setjmp(var S:jmp_buf):longint;assembler;compilerproc;
 Function fpc_getmem(size: ptrint): pointer; compilerproc;
 Procedure fpc_freemem(p: pointer); compilerproc;
 
@@ -7228,7 +7229,8 @@ end;
 *****************************************************************************}
 
 
-function setjmp(var S : jmp_buf) : longint;assembler;[Public, alias : 'FPC_SETJMP'];nostackframe;
+//function setjmp(var S : jmp_buf) : longint;assembler;[Public, alias : 'FPC_SETJMP'];nostackframe;
+function setjmp(var S : jmp_buf) : longint;assembler;nostackframe;
   asm
 {$ifdef win64}
     // Save registers.
@@ -7373,6 +7375,9 @@ begin
 end;
 
 { Needed for calls from Assembler }
+function fpc_setjmp(var S:jmp_buf):longint;assembler;nostackframe;compilerproc;
+asm
+end;
 function fpc_getmem(size:ptrint):pointer;compilerproc;[public,alias:'FPC_GETMEM'];
 begin
      Result := nil;
