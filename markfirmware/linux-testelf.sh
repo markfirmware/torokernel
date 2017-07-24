@@ -65,8 +65,7 @@ coproc torodocker \
     -s
 
 torodocker gdb -q << __EOF__ \
-    |& egrep -iv '^$|will be killed|not from terminal' \
-    |& tee -a $LOG
+    |& egrep -iv '^$|will be killed|not from terminal'
 target remote localhost:1234
 symbol-file testelfprogram
 b 7
