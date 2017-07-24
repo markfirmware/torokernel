@@ -1,7 +1,7 @@
 version: 2
 executorType: docker
 containerInfo:
-  - image: markfirmware/torodocker:torodocker-1500863107533
+  - image: markfirmware/torodocker
 stages:
   build:
     workDir: ~/ToroKernel
