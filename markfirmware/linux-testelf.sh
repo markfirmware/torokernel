@@ -6,7 +6,7 @@ function torodocker {
         log $*
         eval $* |& tee -a $LOG
     else
-        local DOCKER_IMAGE=markfirmware/torodocker:torodocker-1500629424965
+        local DOCKER_IMAGE=markfirmware/torodocker:torodocker-1500861724056
         local COMMAND="docker run --rm -i -v $(pwd):/workdir -p 1234:1234 --entrypoint /bin/bash $DOCKER_IMAGE -c \"$*\""
         log $COMMAND
         eval $COMMAND |& sed '/^$/d' |& sed '/did you forget -T/d' |& tee -a $LOG
@@ -50,7 +50,7 @@ objdump -d testelfprogram > testelfprogram.orig.disasm
 sed -n '/^Disassembly/,/retq/p' testelfprogram.orig.disasm >> $LOG
 
 header patch out call to FPC_INITIALIZEUNITS
-./elfpatch.py --symbol-file testelfprogram.elfpatch testelfprogram --apply
+torodocker /workdir/elfpatch/elfpatch.py --symbol-file testelfprogram.elfpatch testelfprogram --apply
 objdump -d testelfprogram > testelfprogram.disasm
 diff testelfprogram.orig.disasm testelfprogram.disasm >> $LOG
 cp -a testelfprogram artifacts
