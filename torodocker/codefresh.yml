@@ -4,7 +4,7 @@ steps:
     title: Building
     type: build
     image_name: markfirmware/torodocker
-    dockerfile: markfirmware/docker/torodocker.dockerfile
+    dockerfile: torodocker/torodocker.dockerfile
   Pushing:
     title: Pushing
     type: push
