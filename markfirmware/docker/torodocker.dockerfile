@@ -19,3 +19,5 @@ RUN apt-get -y install nasm python-pip && \
     git clone http://github.com/dpocock/elfpatch
 
 RUN chmod u+x elfpatch/elfpatch.py
+
+RUN apt-get -y install gdb
