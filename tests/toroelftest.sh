@@ -60,7 +60,7 @@ cp -a tests/toroelftest artifacts
 header use gdb to observe counter changing
 coproc torodocker \
     qemu-system-x86_64 \
-    -kernel toroelftest \
+    -kernel tests/toroelftest \
     -display none \
     -monitor stdio \
     -S \
