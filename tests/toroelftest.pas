@@ -1,4 +1,4 @@
-program ElfTest;
+program ToroElfTest;
 
 uses
   System in '..\rtl\system.pas';

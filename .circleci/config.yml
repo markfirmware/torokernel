@@ -7,7 +7,7 @@ stages:
     workDir: ~/ToroKernel
     steps:
       - checkout
-      - run: cd tests && ./elftest.sh
+      - run: cd tests && ./toroelftest.sh
       - store_artifacts:
           path: tests/artifacts
           destination: artifacts
