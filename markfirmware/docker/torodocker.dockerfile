@@ -14,9 +14,6 @@ COPY markfirmware/docker/fpctest.pas .
 RUN fpc -i && \
     fpc fpctest.pas
 
-RUN apt-get -y install nasm
-
-#RUN apt-get update && apt-get install -y qemu-system-x86_64 python-pip imagemagick tftp atftp httpie && \
-#    pip install parse
-#COPY docker/test-with-examples.sh .
-#RUN ./test-with-examples.sh
+RUN apt-get -y install nasm python-pip && \
+    pip install pyelftools && \
+    git clone http://github.com/dpocock/elfpatch
