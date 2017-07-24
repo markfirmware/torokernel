@@ -70,7 +70,7 @@ torodocker gdb -q << __EOF__ \
     |& egrep -iv '^$|will be killed|not from terminal'
 target remote localhost:1234
 symbol-file tests/toroelftest
-b 7
+b 8
 define cycle
   c
   printf "                                              Counter = %d\n",  counter
