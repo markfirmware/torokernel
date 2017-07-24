@@ -17,3 +17,5 @@ RUN fpc -i && \
 RUN apt-get -y install nasm python-pip && \
     pip install pyelftools && \
     git clone http://github.com/dpocock/elfpatch
+
+RUN chmod u+x elfpatch/elfpatch.py
