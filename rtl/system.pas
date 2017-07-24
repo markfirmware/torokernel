@@ -1066,6 +1066,8 @@ type
 
 
 { Required to solve overloading problem with call from assembler (PFV) }
+procedure fpc_doneexception;compilerproc;
+procedure fpc_raise_nested;compilerproc;
 function fpc_setjmp(var S:jmp_buf):longint;assembler;compilerproc;
 Function fpc_getmem(size: ptrint): pointer; compilerproc;
 Procedure fpc_freemem(p: pointer); compilerproc;
@@ -1455,6 +1457,7 @@ var
 implementation
 
 
+var emptyintf: ptruint; public name 'FPC_EMPTYINTF';
 {****************************************************************************
                                 Local types
 ****************************************************************************}
@@ -7375,7 +7378,13 @@ begin
 end;
 
 { Needed for calls from Assembler }
-function fpc_setjmp(var S:jmp_buf):longint;assembler;nostackframe;compilerproc;
+procedure fpc_doneexception;[public,alias:'FPC_DONEEXCEPTION'] compilerproc;
+begin
+end;
+procedure fpc_raise_nested;[public,alias:'FPC_RAISE_NESTED']compilerproc;
+begin
+end;
+function fpc_setjmp(var S:jmp_buf):longint;assembler;nostackframe;compilerproc;[Public, alias : 'FPC_SETJMP'];
 asm
 end;
 function fpc_getmem(size:ptrint):pointer;compilerproc;[public,alias:'FPC_GETMEM'];
