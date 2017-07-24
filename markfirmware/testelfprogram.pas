@@ -1,8 +1,6 @@
 program TestElfProgram;
-{$mode delphi}
-
 var
-  Counter:Integer absolute $400154;
+  Counter:LongWord;
 begin
   Counter:=0;
   while True do

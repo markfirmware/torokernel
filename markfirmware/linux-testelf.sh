@@ -9,7 +9,7 @@ function torodocker {
         local DOCKER_IMAGE=markfirmware/torodocker:torodocker-1500629424965
         local COMMAND="docker run --rm -i -v $(pwd):/workdir -p 1234:1234 --entrypoint /bin/bash $DOCKER_IMAGE -c \"$*\""
         log $COMMAND
-        eval $COMMAND |& tee -a $LOG
+        eval $COMMAND |& sed '/^$/d' |& sed '/did you forget -T/d' |& tee -a $LOG
     fi
 }
 
@@ -39,17 +39,48 @@ rm -f $LOG
 
 log $(date)
 
+MULTIBOOT=toromultibootheader64
 showfile testelfprogram.pas
-showfile head64.s
+showfile $MULTIBOOT.s
 
-header building testelfprogram.pas
-torodocker "nasm -o head64.o -f elf64 head64.s"
-torodocker "fpc -B -s testelfprogram.pas && sed -i '/prt0/ i head64.o' link.res && ./ppas.sh"
+header build testelfprogram.pas
+torodocker "nasm -o $MULTIBOOT.o -f elf64 $MULTIBOOT.s"
+torodocker "fpc -l- -g -B -s testelfprogram.pas && sed -i '/prt0/ i $MULTIBOOT.o' link.res && ./ppas.sh"
+objdump -d testelfprogram > testelfprogram.orig.disasm
+sed -n '/^Disassembly/,/retq/p' testelfprogram.orig.disasm >> $LOG
+
+header patch out call to FPC_INITIALIZEUNITS
+./elfpatch.py --symbol-file testelfprogram.elfpatch testelfprogram --apply
+objdump -d testelfprogram > testelfprogram.disasm
+diff testelfprogram.orig.disasm testelfprogram.disasm >> $LOG
 cp -a testelfprogram artifacts
 
-header running qemu
-log the following command is not run during the cloud build:
-log torodocker qemu-system-x86_64 -kernel testelfprogram -display none -monitor stdio
+header use gdb to observe counter changing
+coproc torodocker \
+    qemu-system-x86_64 \
+    -kernel testelfprogram \
+    -display none \
+    -monitor stdio \
+    -device ivshmem,shm=toro,size=1M \
+    -S \
+    -s
+
+gdb -q << __EOF__ \
+    |& egrep -iv '^$|will be killed|not from terminal' \
+    |& tee -a $LOG
+target remote localhost:1234
+symbol-file testelfprogram
+b 7
+define cycle
+  c
+  printf "                                              Counter = %d\n",  counter
+end
+cycle
+cycle
+cycle
+q
+__EOF__
+echo q >&${COPROC[1]}
 
 echo
 echo see $LOG

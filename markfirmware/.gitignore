@@ -1,0 +1,5 @@
+*.disasm
+artifacts/
+link.res
+ppas.sh
+testelfprogram
