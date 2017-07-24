@@ -39,11 +39,11 @@ rm -f $LOG
 
 log $(date)
 
-showfile elftest.pas
+showfile toroelftest.pas
 
-header build elftest.pas
+header build toroelftest.pas
 pushd ..
-torodocker "fpc -B -Fu./rtl -Fu./rtl/drivers tests/elftest.pas"
+torodocker "fpc -B -Fu./rtl -Fu./rtl/drivers tests/toroelftest.pas"
 popd
 
 echo
