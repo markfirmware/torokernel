@@ -46,27 +46,21 @@ showfile toroelftest.pas
 header build toroelftest.pas
 pushd ..
 torodocker "nasm -o tests/$MULTIBOOT.o -f elf64 tests/$MULTIBOOT.s"
-#torodocker "fpc -l- -g -B -s -Fu./rtl -Fu./rtl/drivers tests/toroelftest.pas && sed -i '/prt0/ i tests/$MULTIBOOT.o' link.res && ./ppas.sh"
-torodocker "fpc -l- -g -B -Fu./rtl -Fu./rtl/drivers tests/toroelftest.pas"
-header rtl/system.pas
-cat -b rtl/system.pas | tail -10 >> $LOG
-popd
-
-exit
-
-objdump -d testelfprogram > testelfprogram.orig.disasm
-sed -n '/^Disassembly/,/retq/p' testelfprogram.orig.disasm >> $LOG
+torodocker "fpc -l- -g -B -s -Fu./rtl -Fu./rtl/drivers tests/toroelftest.pas && sed -i '/prt0/ i tests/$MULTIBOOT.o' link.res && ./ppas.sh"
+objdump -d tests/toroelftest > toroelftest.orig.disasm
+sed -n '/^Disassembly/,/retq/p' toroelftest.orig.disasm >> $LOG
 
 header patch out call to FPC_INITIALIZEUNITS
-torodocker /workdir/elfpatch/elfpatch.py --symbol-file testelfprogram.elfpatch testelfprogram --apply
-objdump -d testelfprogram > testelfprogram.disasm
-diff testelfprogram.orig.disasm testelfprogram.disasm >> $LOG
-cp -a testelfprogram artifacts
+echo PASCALMAIN 554889e59090909090 >> elfpatch
+torodocker /workdir/elfpatch/elfpatch.py --symbol-file elfpatch tests/toroelftest --apply
+objdump -d tests/toroelftest > toroelftest.disasm
+diff toroelftest.orig.disasm toroelftest.disasm >> $LOG
+cp -a tests/toroelftest artifacts
 
 header use gdb to observe counter changing
 coproc torodocker \
     qemu-system-x86_64 \
-    -kernel testelfprogram \
+    -kernel toroelftest \
     -display none \
     -monitor stdio \
     -S \
@@ -75,7 +69,7 @@ coproc torodocker \
 torodocker gdb -q << __EOF__ \
     |& egrep -iv '^$|will be killed|not from terminal'
 target remote localhost:1234
-symbol-file testelfprogram
+symbol-file toroelftest
 b 7
 define cycle
   c
@@ -87,6 +81,8 @@ cycle
 q
 __EOF__
 echo q >&${COPROC[1]}
+
+popd
 
 echo
 echo see $LOG

@@ -46,6 +46,8 @@ interface
 ****************************************************************************}
 
 type
+  FILEREC=record end;
+  TEXTREC=record end;
   { The compiler has all integer types defined internally. Here we define only aliases }
   DWORD    = LongWord;
   Cardinal = LongWord;
