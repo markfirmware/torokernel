@@ -5,8 +5,12 @@ steps:
     type: build
     image_name: markfirmware/torodocker
     dockerfile: torodocker/torodocker.dockerfile
-  Pushing:
-    title: Pushing
+  PushingLatest:
+    title: Pushing latest
+    type: push
+    candidate: '${{Building}}'
+  PushingSpecific:
+    title: Pushing specific
     type: push
     candidate: '${{Building}}'
     tag: '${{CF_BRANCH}}-${{CF_BUILD_TIMESTAMP}}'
