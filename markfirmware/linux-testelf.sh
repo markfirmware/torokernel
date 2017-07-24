@@ -62,7 +62,6 @@ coproc torodocker \
     -kernel testelfprogram \
     -display none \
     -monitor stdio \
-    -device ivshmem \
     -S \
     -s
 
