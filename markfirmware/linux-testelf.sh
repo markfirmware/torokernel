@@ -50,7 +50,6 @@ objdump -d testelfprogram > testelfprogram.orig.disasm
 sed -n '/^Disassembly/,/retq/p' testelfprogram.orig.disasm >> $LOG
 
 header patch out call to FPC_INITIALIZEUNITS
-torodocker ls -lt /workdir
 torodocker /workdir/elfpatch/elfpatch.py --symbol-file testelfprogram.elfpatch testelfprogram --apply
 objdump -d testelfprogram > testelfprogram.disasm
 diff testelfprogram.orig.disasm testelfprogram.disasm >> $LOG
