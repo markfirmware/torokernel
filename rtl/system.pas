@@ -6507,26 +6507,31 @@ operator -(const op : variant) dest : variant;{$ifdef SYSTEMINLINE}inline;{$endi
 operator =(const op1,op2 : variant) dest : boolean;{$ifdef SYSTEMINLINE}inline;{$endif}
   begin
     // dest:=variantmanager.cmpop(op1,op2,opcmpeq);
+       dest:=False;
   end;
 
 operator <(const op1,op2 : variant) dest : boolean;{$ifdef SYSTEMINLINE}inline;{$endif}
   begin
   //   dest:=variantmanager.cmpop(op1,op2,opcmplt);
+       dest:=False;
   end;
 
 operator >(const op1,op2 : variant) dest : boolean;{$ifdef SYSTEMINLINE}inline;{$endif}
   begin
     // dest:=variantmanager.cmpop(op1,op2,opcmpgt);
+       dest:=False;
   end;
 
 operator >=(const op1,op2 : variant) dest : boolean;{$ifdef SYSTEMINLINE}inline;{$endif}
   begin
     // dest:=variantmanager.cmpop(op1,op2,opcmpge);
+       dest:=False;
   end;
 
 operator <=(const op1,op2 : variant) dest : boolean;{$ifdef SYSTEMINLINE}inline;{$endif}
   begin
    //  dest:=variantmanager.cmpop(op1,op2,opcmplt);
+       dest:=False;
   end;
 
 procedure VarArrayRedim(var A: Variant; HighBound: SizeInt);
@@ -7339,6 +7344,7 @@ end;
 function IsMemoryManagerSet:Boolean;
 begin
 	//IsMemoryManagerSet := (MemoryManager.GetMem<>@SysGetMem) or (MemoryManager.FreeMem<>@SysFreeMem);
+	IsMemoryManagerSet := False;
 end;
 
 
@@ -7359,6 +7365,7 @@ end;
 function FreeMem(P: Pointer): PtrInt;
 begin
 	//Freemem := MemoryManager.FreeMem(P);
+	Freemem := 0;
 end;
 
 
@@ -7372,11 +7379,13 @@ function GetMemory(size:ptrint):pointer;
 
 begin
  //GetMemory := Getmem(size);
+ GetMemory := nil;
 end;
 
 function ReAllocMem(var P: Pointer; NewSize: PtrUInt): Pointer;
 begin
 	//Result := MemoryManager.g(P, NewSize);
+	Result := nil;
 end;
 
 { Needed for calls from Assembler }
