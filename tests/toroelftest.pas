@@ -1,7 +1,7 @@
 program ToroElfTest;
 {$i Toro.inc}
 uses
-  Arch, Console, Debug, Filesystem, Kernel, Memory,
+  Arch, Console, Debug, E1000, Filesystem, Kernel, Memory,
   Ne2000, Network, Pci, Process;
 
 var
