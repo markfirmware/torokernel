@@ -14,5 +14,5 @@ begin
   end;
   Counter:=0;
   while True do
-    Inc(Counter);
+    Inc(Counter,$100000000);
 end.
