@@ -14,10 +14,10 @@ begin
     mov cr0_reg, rax
     mov eax, 0
     cpuid
-    mov cpuid_eax, eax
-    mov cpuid_ebx, ebx
-    mov cpuid_edx, edx
-    mov cpuid_edx, edx
+    mov cpuid_0_eax, eax
+    mov cpuid_0_ebx, ebx
+    mov cpuid_0_edx, edx
+    mov cpuid_0_edx, edx
   end;
   Counter:=$7fffffff;
   while True do
