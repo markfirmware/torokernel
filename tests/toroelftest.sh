@@ -49,7 +49,7 @@ torodocker "nasm -o tests/$MULTIBOOT.o -f elf64 tests/$MULTIBOOT.s"
 torodocker "fpc -l- -g -B -s -Fi./rtl -Fu./rtl -Fu./rtl/drivers tests/toroelftest.pas && sed -i '/prt0/ i tests/$MULTIBOOT.o' link.res && ./ppas.sh"
 objdump -d tests/toroelftest > toroelftest.orig.disasm
 sed -n '/^Disassembly/,/retq/p' toroelftest.orig.disasm >> $LOG
-
+exit
 header patch out call to FPC_INITIALIZEUNITS
 echo PASCALMAIN 554889e59090909090 >> elfpatch
 torodocker /workdir/elfpatch/elfpatch.py --symbol-file elfpatch tests/toroelftest --apply
@@ -72,7 +72,7 @@ target remote localhost:1234
 symbol-file tests/toroelftest
 b 15
 c
-printf "                                              cr0 = %x\n", cr0_reg
+printf "                                              cr0 = 0x%x\n", cr0_reg
 b 17
 define cycle
   c

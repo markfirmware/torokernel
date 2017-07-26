@@ -12,7 +12,7 @@ begin
     mov rax, cr0
     mov cr0_reg, rax
   end;
-  Counter:=0;
+  Counter:=$7fffffff;
   while True do
-    Inc(Counter,$100000000);
+    Inc(Counter,1);
 end.
