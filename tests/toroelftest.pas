@@ -5,7 +5,7 @@ uses
   Ne2000, Network, Pci, Process;
 
 var
-  Counter:LongWord;
+  Counter:QWord;
   cr0_reg:QWord;
 begin
   asm
