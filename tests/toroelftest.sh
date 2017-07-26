@@ -46,7 +46,7 @@ showfile toroelftest.pas
 header build toroelftest.pas
 pushd ..
 torodocker "nasm -o tests/$MULTIBOOT.o -f elf64 tests/$MULTIBOOT.s"
-torodocker "fpc -l- -g -B -s -Fu./rtl -Fu./rtl/drivers tests/toroelftest.pas && sed -i '/prt0/ i tests/$MULTIBOOT.o' link.res && ./ppas.sh"
+torodocker "fpc -l- -g -B -s -Fi./rtl -Fu./rtl -Fu./rtl/drivers tests/toroelftest.pas && sed -i '/prt0/ i tests/$MULTIBOOT.o' link.res && ./ppas.sh"
 objdump -d tests/toroelftest > toroelftest.orig.disasm
 sed -n '/^Disassembly/,/retq/p' toroelftest.orig.disasm >> $LOG
 
@@ -70,10 +70,13 @@ torodocker gdb -q << __EOF__ \
     |& egrep -iv '^$|will be killed|not from terminal'
 target remote localhost:1234
 symbol-file tests/toroelftest
-b 8
+b 15
+c
+printf "                                              cr0 = %x\n", cr0_reg
+b 17
 define cycle
   c
-  printf "                                              Counter = %d\n",  counter
+  printf "                                              Counter = %d\n", counter
 end
 cycle
 cycle

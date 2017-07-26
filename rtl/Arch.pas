@@ -902,12 +902,6 @@ begin
 
 end;
 
-procedure nolose4;  [public, alias: 'FPC_DONEEXCEPTION'];
-begin
-
-end;
-
-
 {$ENDIF}
 
 // Procedures to capture unhandle interruptions

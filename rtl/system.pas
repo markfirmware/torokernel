@@ -1068,8 +1068,6 @@ type
 
 
 { Required to solve overloading problem with call from assembler (PFV) }
-procedure fpc_doneexception;compilerproc;
-procedure fpc_raise_nested;compilerproc;
 function fpc_setjmp(var S:jmp_buf):longint;assembler;compilerproc;
 Function fpc_getmem(size: ptrint): pointer; compilerproc;
 Procedure fpc_freemem(p: pointer); compilerproc;
@@ -1459,7 +1457,6 @@ var
 implementation
 
 
-var emptyintf: ptruint; public name 'FPC_EMPTYINTF';
 {****************************************************************************
                                 Local types
 ****************************************************************************}

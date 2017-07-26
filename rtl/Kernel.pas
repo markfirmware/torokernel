@@ -45,7 +45,7 @@ implementation
 
 uses
   {$IFDEF DEBUG} Debug, {$ENDIF}
-  Arch, Console, Process, Memory, FileSystem, Network;
+  Arch, Console, Process, Memory, Filesystem, Network;
 
   procedure no; external name '_$KERNEL$_Ld1';
   
