@@ -70,10 +70,11 @@ torodocker gdb -q << __EOF__ \
     |& egrep -iv '^$|will be killed|not from terminal'
 target remote localhost:1234
 symbol-file tests/toroelftest
-b 15
+b 19
 c
 printf "                                              cr0 = 0x%x\n", cr0_reg
-b 17
+printf "                                            cpuid = 0x%x\n", cpuid_eax
+b 21
 define cycle
   c
   printf "                                              Counter = %16.16x\n", counter
