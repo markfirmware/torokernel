@@ -18,13 +18,13 @@ begin
     mov cpuid_0_eax, eax
     mov cpuid_0_ebx, ebx
     mov cpuid_0_edx, edx
-    mov cpuid_0_ecx, edx
+    mov cpuid_0_ecx, ecx
     mov eax, 1
     cpuid
     mov cpuid_1_eax, eax
     mov cpuid_1_ebx, ebx
     mov cpuid_1_edx, edx
-    mov cpuid_1_ecx, edx
+    mov cpuid_1_ecx, ecx
   end;
   Counter:=$7fffffff;
   while True do
