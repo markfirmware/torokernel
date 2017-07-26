@@ -76,7 +76,7 @@ printf "                                              cr0 = 0x%x\n", cr0_reg
 b 17
 define cycle
   c
-  printf "                                              Counter = %d\n", counter
+  printf "                                              Counter = %16.16x\n", counter
 end
 cycle
 cycle
