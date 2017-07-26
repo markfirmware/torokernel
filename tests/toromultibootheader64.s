@@ -18,7 +18,7 @@ MULTIBOOT_HEADER_MAGIC     equ 0x1BADB002
 MULTIBOOT_HEADER_FLAGS     equ MULTIBOOT_MODULE_ALIGN | MULTIBOOT_MEMORY_MAP | MULTIBOOT_ADDRESS_FIELDS
 MULTIBOOT_HEADER_CHECKSUM  equ -(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS)
 
-SECTION .text                   ; Multiboot header and _inicio
+SECTION .text                   ; .text - multiboot header and _inicio
 align 4
 MULTIBOOT_HEADER_HEADER:
 dd MULTIBOOT_HEADER_MAGIC
@@ -35,7 +35,7 @@ _inicio:                        ; set up stack, push header, continue
     push rbx
     jmp  _start
 
-SECTION .bss                    ; Kernel stack
+SECTION .bss                    ; .bss - kernel stack
 align 32
     resb 0x4000
 KERNEL_STACK_END:
