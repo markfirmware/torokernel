@@ -8,6 +8,7 @@ var
   Counter:QWord;
   cr0_reg:QWord;
   cpuid_0_eax, cpuid_0_ebx, cpuid_0_edx, cpuid_0_ecx:LongWord;
+  cpuid_1_eax, cpuid_1_ebx, cpuid_1_edx, cpuid_1_ecx:LongWord;
 begin
   asm
     mov rax, cr0
@@ -18,6 +19,12 @@ begin
     mov cpuid_0_ebx, ebx
     mov cpuid_0_edx, edx
     mov cpuid_0_edx, edx
+    mov eax, 1
+    cpuid
+    mov cpuid_1_eax, eax
+    mov cpuid_1_ebx, ebx
+    mov cpuid_1_edx, edx
+    mov cpuid_1_edx, edx
   end;
   Counter:=$7fffffff;
   while True do
