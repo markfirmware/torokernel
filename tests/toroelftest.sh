@@ -72,8 +72,11 @@ target remote localhost:1234
 symbol-file tests/toroelftest
 b 19
 c
-printf "                                              cr0 = 0x%x\n", cr0_reg
-printf "                                            cpuid = 0x%x\n", cpuid_eax
+printf "                                              cr0 = 0x%8.8x\n", cr0_reg
+printf "                                      cpuid 0 eax = 0x%8.8x\n", cpuid_eax
+printf "                                      cpuid 0 ebx = 0x%8.8x\n", cpuid_ebx
+printf "                                      cpuid 0 edx = 0x%8.8x\n", cpuid_edx
+printf "                                      cpuid 0 ecx = 0x%8.8x\n", cpuid_ecx
 b 21
 define cycle
   c

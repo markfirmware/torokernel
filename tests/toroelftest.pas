@@ -7,7 +7,7 @@ uses
 var
   Counter:QWord;
   cr0_reg:QWord;
-  cpuid_eax:LongWord;
+  cpuid_0_eax, cpuid_0_ebx, cpuid_0_edx, cpuid_0_ecx:LongWord;
 begin
   asm
     mov rax, cr0
@@ -15,6 +15,9 @@ begin
     mov eax, 0
     cpuid
     mov cpuid_eax, eax
+    mov cpuid_ebx, ebx
+    mov cpuid_edx, edx
+    mov cpuid_edx, edx
   end;
   Counter:=$7fffffff;
   while True do
