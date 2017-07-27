@@ -26,7 +26,7 @@ begin
     mov cpuid_1_edx, edx
     mov cpuid_1_ecx, ecx
   end;
-  Counter:=$7fffffff;
+  Counter:=$ffffffff;
   while True do
     Inc(Counter,1);
 end.
