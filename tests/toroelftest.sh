@@ -46,7 +46,7 @@ showfile toroelftest.pas
 header build toroelftest.pas
 pushd ..
 torodocker "nasm -o tests/$MULTIBOOT.o -f elf64 tests/$MULTIBOOT.s"
-torodocker "fpc -l- -g -B -s -Fi./rtl -Fu./rtl -Fu./rtl/drivers tests/toroelftest.pas && sed -i '/prt0/ i tests/$MULTIBOOT.o' link.res && ./ppas.sh"
+torodocker "(fpc -l- -g -B -s -Fi./rtl -Fu./rtl -Fu./rtl/drivers tests/toroelftest.pas && sed -i '/prt0/ i tests/$MULTIBOOT.o' link.res && ./ppas.sh) | sed '/^$/d'"
 
 header disassemble kernel
 objdump -d tests/toroelftest > toroelftest.orig.disasm
