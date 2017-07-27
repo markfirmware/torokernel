@@ -87,6 +87,7 @@ b 31
 define cycle
   c
   printf "                                              Counter = %16.16x\n", counter
+  x/xg 0x626140
 end
 cycle
 cycle
