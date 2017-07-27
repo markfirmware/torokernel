@@ -63,7 +63,6 @@ header use gdb to observe counter changing
 coproc torodocker \
     qemu-system-x86_64 \
     -kernel tests/toroelftest \
-    -cpu qemu64 \
     -display none \
     -monitor stdio \
     -S \
